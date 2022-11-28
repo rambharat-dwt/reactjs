@@ -113,6 +113,7 @@ const NewUser = () => {
         checked={isChecked}
       />
       <br />
+      <br/>
       <label>False</label> &nbsp;
       <input
         type="checkbox"
