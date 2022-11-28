@@ -19,6 +19,10 @@ import ProductDetail from "./containers/ProductDetail";
 import NewUser from "./components/newTutes/Todos";
 import Class from "./components/Class";
 
+import Cart from "./components/reduxproject/Cart";
+import Home from "./components/reduxproject/Home";
+import NavigationBar from "./components/reduxproject/NavigationBar";
+
 const dummyExpenses = [
   {
     id: "e1",
@@ -59,7 +63,16 @@ function App() {
   return (
     <>
       <div className="app">
-        <NewUser />
+        <BrowserRouter>
+          <NavigationBar />
+
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/cart" element={<Cart />}></Route>
+          </Routes>
+        </BrowserRouter>
+
+        {/* <NewUser /> */}
         {/* <Class /> */}
 
         {/* <BrowserRouter>

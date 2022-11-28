@@ -5,60 +5,43 @@ const Class = () => {
   // const [cls, setCls] = useState("true");
   const [newcls, setNewcls] = useState([]);
 
-  const handleClick = () => {
-    // e.preventDefault();
-    // let selectedItem = e ? parseInt(arr.target.id) : null;
-    // setCls(selectedItem);
-    // console.log(">> clstem", cls);
+  const handleClick = (items) => {
+    // console.log(data);
 
-    if (newcls.includes(list.id)) {
+    if (newcls.includes(items)) {
       const clsss = newcls.filter((item) => {
-        return item !== list.id;
+        return item !== items;
       });
+      setNewcls(clsss);
     } else {
-      setNewcls([...newcls, list.id]);
+      setNewcls([...newcls, items]);
     }
 
-    // setCls(!cls);
-  };
-  //   const handleClicks = () => {
-  //     setClss(!clss);
-  //   };
 
-  //   const handleClickss = () => {
-  //     setCl(!cl);
-  //   };
-  //   const handleClicksss = () => {
-  //     setClsss(!clsss);
-  //   };
-  const list = [1, 2, 3, 4];
+  };
+  
+
+  console.log("hhh", handleClick);
+  const list = ["one", "two", "three", "four"];
   return (
     <div>
-      <div className="container">
+      <div className="cl">
         <h4> hello</h4>
       </div>
 
-      {list.map((data, index) => {
+      {list.map((items, index) => {
         return (
-          <div
-            className={`${newcls.includes(list.id) ? "clsss" : "cls "} `}
-            key={index}
-            onClick={handleClick()}
-          >
-            {data}
+          <div key={index}>
+            <div
+              className={`clss ${newcls.includes(items) ? "clsss" : ""} `}
+              key={index}
+              onClick={() => handleClick(items)}
+            >
+              {items}
+            </div>
           </div>
         );
       })}
-
-      {/* <div className={clss ? "clss" : null} onClick={handleClicks}>
-        my
-      </div>
-      <div className={cl ? "cl" : null} onClick={handleClickss}>
-        name
-      </div>
-      <div className={clsss ? "clsss" : null} onClick={handleClicksss}>
-        is
-      </div> */}
     </div>
   );
 };

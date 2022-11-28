@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import NavigationBar from "./Navbar";
-import Navbar from "./Navbar";
+import NavigationBar from "../reduxproject/NavigationBar";
+import Navbar from "../reduxproject/NavigationBar";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { getList } from "../../services/actions/Action";

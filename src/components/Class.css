@@ -5,16 +5,56 @@
 }
 .clss {
   background-color: purple;
+  margin-left: 40rem;
+  margin-right: 40rem;
+  margin-top: 3rem;
+  text-align: center;
 }
 
 .cl {
-  background-color: blue;
+  background-color: royalblue;
   font-size: 1.2rem;
   font-weight: bold;
+  text-align: center;
+  margin-left: 40rem;
+  margin-right: 40rem;
+  margin-top: 3rem;
 }
 
 .clsss {
   background-color: rosybrown;
-  font-size: 1.2rem;
-  font-weight: bold;
+  margin-left: 40rem;
+  margin-right: 40rem;
+}
+
+img {
+  height: 6rem;
+}
+.productsRow {
+  display: flex;
+  flex-wrap: wrap;
+}
+.productsRow .productWrapper {
+  margin: 15px;
+  width: calc(100% / 4 - 30px);
+  text-align: center;
+}
+.productsRow .productWrapper img {
+  width: 68%;
+  height: auto;
+  margin-bottom: 20px;
+}
+.addToCartBtn {
+  cursor: pointer;
+  color: blue;
+  border: solid;
+  background-color: aqua;
+}
+.addToCartBtn:hover {
+  background-color: bisque;
+}
+
+.cartCount {
+  text-align: right;
+  padding: 1rem;
 }
