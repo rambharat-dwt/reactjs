@@ -9,10 +9,9 @@ const NewUser = () => {
   const [data, setData] = useState([]);
   const [searchApiData, setSearchApiData] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
-  // const [isChecked, setIsChecked] = useState(false);
-  const [filterData, setFilterData] = useState("");
+  const [checked, setChecked] = useState(false);
 
-  // const [filter, setfilter] = useState({});
+  const [filterData, setFilterData] = useState("");
 
   // const list = useSelector((state) => state.rootReducer.getListReducer.payload);
   // console.log(list);
@@ -37,73 +36,14 @@ const NewUser = () => {
     fetchList();
   }, []);
 
-  const handleFilterChange = () => {
+  const handleFilterChange = (e) => {
     setIsChecked(!isChecked);
-
-    // console.log("event");
   };
-  // const handleChange = () => {
-  //   setChecked(!isChecked);
-  // };
+  const handleCheckChange = (e) => {
+    setChecked(!checked);
+  };
 
-  // const array = [
-  //   { userId: 1, id: 1, title: "delectus aut autem", completed: false },
-
-  //   {
-  //     userId: 1,
-  //     id: 2,
-  //     title: "quis ut nam facilis et officia qui",
-  //     completed: false,
-  //   },
-
-  //   { userId: 1, id: 3, title: "fugiat veniam minus", completed: false },
-
-  //   { userId: 1, id: 4, title: "et porro tempora", completed: true },
-
-  //   {
-  //     userId: 1,
-  //     id: 5,
-  //     title: "laboriosam mollitia et enim quasi adipisci quia provident illum",
-  //     completed: false,
-  //   },
-
-  //   {
-  //     userId: 1,
-  //     id: 6,
-  //     title: "qui ullam ratione quibusdam voluptatem quia omnis",
-  //     completed: false,
-  //   },
-
-  //   {
-  //     userId: 1,
-  //     id: 7,
-  //     title: "illo expedita consequatur quia in",
-  //     completed: false,
-  //   },
-
-  //   {
-  //     userId: 1,
-  //     id: 8,
-  //     title: "quo adipisci enim quam ut ab",
-  //     completed: true,
-  //   },
-
-  //   {
-  //     userId: 1,
-  //     id: 9,
-  //     title: "molestiae perspiciatis ipsa",
-  //     completed: false,
-  //   },
-
-  //   {
-  //     userId: 1,
-  //     id: 10,
-  //     title: "illo est ratione doloremque quia maiores aut",
-  //     completed: true,
-  //   },
-  // ];
-  // console.log("aar", data);
-  const newArray = data.slice(0, 10);
+  // const newArray = data.slice(0, 30);
 
   const handleChange = (e) => {
     if (e.target.value == "") {
@@ -118,27 +58,41 @@ const NewUser = () => {
       setData(result);
     }
 
-    if (isChecked ? "checked" : "") {
-      setData(completedFilter);
-    }
-    // if (isChecked ? "checked" : "") {
-    //   setData(unCompletedFilter);
-    // }
-
     setFilterData(e.target.value);
   };
 
-  const completedFilter = newArray.filter((item) => {
+  const completedFilter = data.filter((item) => {
     return item.completed === true;
   });
 
-  const unCompletedFilter = newArray.filter((item) => {
+  const unCompletedFilter = data.filter((item) => {
     return item.completed === false;
   });
 
-  console.log("newData", newArray);
+  console.log("newData", data);
 
-  // console.log("complatet", data.completed) == true;
+  const completedFilterArrr = completedFilter.map((item, ind) => {
+    return (
+      <tr key={ind}>
+        <td> {item.userId} </td>
+        <td> {item.id} </td>
+        <td>{item.title}</td>
+        <td> {item.completed}</td>
+      </tr>
+    );
+  });
+
+  const unCompletedFilterArrr = unCompletedFilter.map((item, ind) => {
+    return (
+      <tr key={ind}>
+        <td> {item.userId} </td>
+        <td> {item.id} </td>
+        <td>{item.title}</td>
+        <td> {item.completed}</td>
+      </tr>
+    );
+  });
+
   return (
     <div>
       <h4>Search data in list</h4>
@@ -148,39 +102,58 @@ const NewUser = () => {
         value={filterData}
         onInput={(e) => handleChange(e)}
       ></input>
+
       <br />
       <br />
+      <label>True</label> &nbsp;
       <input
         type="checkbox"
         name="cks"
+        onChange={handleFilterChange}
         checked={isChecked}
-        onChange={() => handleFilterChange()}
       />
       <br />
-      {/* <input
+      <label>False</label> &nbsp;
+      <input
         type="checkbox"
-        name="ckss"
-        checked={isChecked}
-        onChange={() => handleChange()}
-      /> */}
-
+        name="cks"
+        onChange={handleCheckChange}
+        checked={checked}
+      />
       <table>
         <tr>
           <th>userId</th>
           <th>id</th>
           <th>title</th>
         </tr>
+        {!isChecked &&
+          !checked &&
+          data?.map((item, ind) => {
+            return (
+              <tr key={ind}>
+                <td> {item.userId} </td>
+                <td> {item.id} </td>
+                <td>{item.title}</td>
+                <td> {item.completed}</td>
+              </tr>
+            );
+          })}
 
-        {data?.map((item, ind) => {
-          return (
-            <tr key={ind}>
-              <td> {item.userId} </td>
-              <td> {item.id} </td>
-              <td>{item.title}</td>
-              <td> {item.completed}</td>
-            </tr>
-          );
-        })}
+        {isChecked &&
+          checked &&
+          data?.map((item, ind) => {
+            return (
+              <tr key={ind}>
+                <td> {item.userId} </td>
+                <td> {item.id} </td>
+                <td>{item.title}</td>
+                <td> {item.completed}</td>
+              </tr>
+            );
+          })}
+
+        {isChecked && !checked && completedFilterArrr}
+        {checked && !isChecked && unCompletedFilterArrr}
       </table>
     </div>
   );
