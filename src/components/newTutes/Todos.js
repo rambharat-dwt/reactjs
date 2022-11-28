@@ -103,7 +103,7 @@ const NewUser = () => {
         onInput={(e) => handleChange(e)}
       ></input>
 
-      <br />
+      
       <br />
       <label>True</label> &nbsp;
       <input
